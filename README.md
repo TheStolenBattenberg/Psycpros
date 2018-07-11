@@ -2,7 +2,7 @@
 Psycpros gets its name from a translation error in the PAL and NTSC versions of King's Field II.
 
 ## But what is it?
-Psycpros is a collection of documentation and tools for messing with early FromSoftware tiles.
+Psycpros is a collection of documentation and tools for messing with early FromSoftware files.
 
 ### *It's main features are:*
 - Well written C File format specifications, to make future tool writing easier
