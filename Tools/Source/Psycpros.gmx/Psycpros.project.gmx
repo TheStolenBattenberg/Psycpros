@@ -14,10 +14,18 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="Engine Formats">
-      <script>scripts\IMAGE.gml</script>
-      <script>scripts\IMAGE_GetSurface.gml</script>
-      <script>scripts\IMAGE_GetSprite.gml</script>
-      <script>scripts\IMAGE_Free.gml</script>
+      <scripts name="Image">
+        <script>scripts\IMAGE.gml</script>
+        <script>scripts\IMAGE_GetSurface.gml</script>
+        <script>scripts\IMAGE_GetSprite.gml</script>
+        <script>scripts\IMAGE_Free.gml</script>
+      </scripts>
+      <scripts name="Texpage">
+        <script>scripts\TEXPAGE.gml</script>
+        <script>scripts\TEXPAGE_Free.gml</script>
+        <script>scripts\TEXPAGE_AddImage.gml</script>
+        <script>scripts\TEXPAGE_GetSprite.gml</script>
+      </scripts>
     </scripts>
     <scripts name="File Formats">
       <scripts name="TIM">

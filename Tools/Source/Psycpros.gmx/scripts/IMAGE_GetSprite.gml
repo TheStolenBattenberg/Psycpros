@@ -14,7 +14,7 @@ if(argument0[Image.SPtr] == null) {
     
     surface_free(surf);
                 
-    argument0[@ Image.SPtr] = spr;        
+    argument0[@ Image.SPtr] = spr;
 }
 
 return argument0[@ Image.SPtr];

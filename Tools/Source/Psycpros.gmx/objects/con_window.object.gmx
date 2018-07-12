@@ -409,14 +409,14 @@ switch(gui_submenu_get(mImport, 0)) {
         //Load RTIM File.
         var rtim = rtim_open(file);
         if(!failed(rtim)) {
-            var img = rtim_load(rtim);
+            var tpage = rtim_load(rtim);
             rtim_close(rtim);
             
             //Add Image to canvas...
-            var spr = IMAGE_GetSprite(img);
+            var spr = TEXPAGE_GetSprite(tpage);
             gui_canvas_set_image(pCanvas, spr);
             
-            pool_add(pMPool, img, Pool.Data2D);
+            pool_add(pMPool, tpage, Pool.Data2D);
         }
     break;
 }

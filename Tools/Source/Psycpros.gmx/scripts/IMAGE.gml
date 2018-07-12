@@ -22,8 +22,8 @@ var img2d;
     img2d[Image.Width]  = 0;    //Image Width
     img2d[Image.Height] = 0;    //Image Height
     img2d[Image.Mode]   = 0;    //Image BPP
-    img2d[Image.Param]  = 0;    //Image Parameters
     img2d[Image.IData]  = null; //Image pixel data pointer
     img2d[Image.CData]  = null; //Image colour data pointer
+    img2d[Image.Param]  = 0;    //Image Parameters
     img2d[Image.SPtr]   = null  //Image sprite
 return img2d;

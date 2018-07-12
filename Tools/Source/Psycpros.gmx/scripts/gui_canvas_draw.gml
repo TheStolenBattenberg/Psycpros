@@ -6,6 +6,10 @@ var xx = argument1;
 var yy = argument2;
 var ww = argument3;
 var hh = argument4;
+var imgX = canvas[@ 5];
+var imgY = canvas[@ 6];
+var wlx  = canvas[@ 7];
+var wly  = canvas[@ 8]; 
 
 //Get Mouse Position
 var wmx = window_mouse_get_x();
@@ -22,6 +26,16 @@ var ZoomIn  = keyboard_check_pressed(vk_up);
 canvas[@ 1] -= ZoomOut/4;
 canvas[@ 1] += ZoomIn/4;
 canvas[@ 1] = clamp(canvas[@ 1], 0.25, 8.0);
+
+if(mouse_check_button(mb_left)) {
+    imgX += (canvas[@ 7] - wmx) / 2;
+    imgY += (canvas[@ 8] - wmy) / 2;
+    canvas[@ 3] = true;
+}
+canvas[@ 7] = wmx;
+canvas[@ 8] = wmy;
+canvas[@ 6] = imgY;
+canvas[@ 5] = imgX
 
 //Handle Updates
 if(ZoomOut || ZoomIn || gui_update_needed()) {
@@ -41,7 +55,7 @@ if(canvas[@ 3] == true) {
     }
     
     texture_set_interpolation(false);
-    draw_sprite_ext(canvas[0], 0, ww/2, hh/2, canvas[1], canvas[1], 0, c_white, 1);
+    draw_sprite_ext(canvas[0], 0, (ww/2)-imgX, (hh/2)-imgY, canvas[1], canvas[1], 0, c_white, 1);
     texture_set_interpolation(true);
 
     //Reset the draw target.
