@@ -27,5 +27,5 @@ Psycpros is a collection of documentation and tools for messing with early FromS
   
   
 ### *Screenshots*
-An early Version:
-![Screenshot](https://cdn.pbrd.co/images/HtT51p4.png)
+![Screenshot](https://cdn.pbrd.co/images/Hu2RDZ3.png)
+![Screenshot](https://cdn.pbrd.co/images/Hu2UiYe.png)
