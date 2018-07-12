@@ -397,6 +397,27 @@ switch(gui_submenu_get(mImport, 0)) {
     break;
     
     case 1:
+            //Add an image tab if it does not exist.
+        if(!gui_tabs_get_exists(lTabs, wImageTab)) {
+            ds_list_add(lTabs, wImageTab);
+        }
+        gui_tabs_set_selected(lTabs, gui_tabs_find_tab(lTabs, wImageTab));
+
+        //Get file
+        var file = get_file("");
+        
+        //Load RTIM File.
+        var rtim = rtim_open(file);
+        if(!failed(rtim)) {
+            var img = rtim_load(rtim);
+            rtim_close(rtim);
+            
+            //Add Image to canvas...
+            var spr = IMAGE_GetSprite(img);
+            gui_canvas_set_image(pCanvas, spr);
+            
+            pool_add(pMPool, img, Pool.Data2D);
+        }
     break;
 }
 </string>

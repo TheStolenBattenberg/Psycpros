@@ -6,7 +6,7 @@ var l2 = argument0[@ 1];
 
 //Add file to list, and get its index.
 ds_list_add(l1, argument1);
-var fInd = ds_list_size(l1);
+var fInd = ds_list_size(l1) - 1;
 
 //Create a pool entry.
 var poolEnt = (argument2 << 24) | (fInd & $FFFFFF);

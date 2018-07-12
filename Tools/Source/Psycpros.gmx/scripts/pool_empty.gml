@@ -13,7 +13,8 @@ for(var i = 0; i < ds_list_size(l2); ++i) {
     //Delete file
     switch(dType) {
         case Pool.Data2D:
-            IMAGE_Free(fInd);
+            IMAGE_Free(l1[| fInd]);
+
             printf("2D Data Cleared");
             break;
         default: break;
