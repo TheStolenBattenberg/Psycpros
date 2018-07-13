@@ -10,21 +10,34 @@ typedef struct {
 	uint  uFileEOF;             //Offset to the end of file.
 	uint  uNumAnim;             //Number of animations.
 	uint  uTMDOffset;           //Offset to the base mesh TMD.
-	uint  uUnknown;
+	uint  uVertexHeapOffset;    //Offset to where the Vertex Heap Data table is located +4, probably wrong.
+	uint  uAnimPtrsOffset; 	    //Always 0x14, as the first animation is at 0x14.
+	uint *pAnimPtr;             //An array of ptrs to Animations. Depends on the value of 'uNumAnim'
 } MO_Header;
 
 typedef struct {
-	uint uAnimPtrsOffset; //Always 0x14, as the first animation is at 0x14.
-	uint *pAnimPtr;       //Depends on the value of uNumAnim.
-} MO_AnimHeader;
-
-typedef struct {
-	uint uNumFrame;
-	
+	uint uNumFrame;             //Number of frames in an animation
+	uint *pFramePtr;            //Pointers to frames in the animation.
 } MO_Anim;
 
+typedef struct {
+	ushort uUnknown01;
+	ushort uUnknown02;
+	ushort uUnknown03;
+	ushort uUnknown04;
+} MO_Frame;
+
+typedef struct {
+	uint uHeapStart;	   //Where vertex data begins.
+	uint uHeapEnd;	           //Where vertex data ends / length / Unknown
+} MO_VHeap;
+
+typedef struct {
+	uint uNumHeap;             //Number of vertex heaps.
+	MO_VHeap vHeap[uNumHeap];  //
+} MO_VertexHeapTable;
 
 /** NOTES:
- *  That unknown int in the header is bugging me, but we won't know what it is until
- *  we have discovered more of the file.
+ *	A lot of this is still guesstimation, but we're close...
+ *
 **/
