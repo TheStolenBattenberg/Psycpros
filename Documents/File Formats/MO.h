@@ -1,7 +1,7 @@
 ///
 // MO Animated TMD File
 // KING'S FIELD II, KING'S FIELD III
-// VERSION 0.1
+// VERSION 0.2
 ///
 
 #include "KFTypes.h"
@@ -10,7 +10,7 @@ typedef struct {
 	uint  uFileEOF;             //Offset to the end of file.
 	uint  uNumAnim;             //Number of animations.
 	uint  uTMDOffset;           //Offset to the base mesh TMD.
-	uint  uVertexHeapOffset;    //Offset to where the Vertex Heap Data table is located +4, probably wrong.
+	uint  uVertexHeapOffset;    //Offset to where the Vertex Heap Data table is located.
 	uint  uAnimPtrsOffset; 	    //Always 0x14, as the first animation is at 0x14.
 	uint *pAnimPtr;             //An array of ptrs to Animations. Depends on the value of 'uNumAnim'
 } MO_Header;
@@ -21,23 +21,23 @@ typedef struct {
 } MO_Anim;
 
 typedef struct {
-	ushort uUnknown01;
-	ushort uUnknown02;
-	ushort uUnknown03;
-	ushort uUnknown04;
+	/* UNKNOWN... Size seems to change. */
 } MO_Frame;
 
-typedef struct {
-	uint uHeapStart;	   //Where vertex data begins.
-	uint uHeapEnd;	           //Where vertex data ends / length / Unknown
-} MO_VHeap;
+typedef struct { //They skipped out the end padding word from regular TMDs...
+	sword sPosX;
+	sword sPosY;
+	sword sPosZ;
+} MO_VERTEXPACK;
 
-typedef struct {
-	uint uNumHeap;             //Number of vertex heaps.
-	MO_VHeap vHeap[uNumHeap];  //
+typedef struct { // 4 * TotalFrameCount. TotalFrameCount is equal to the total frames across all animations.
+	uint* uVertexOffset;	//An array of pointers to vertex data, we don't understand yet.
 } MO_VertexHeapTable;
 
 /** NOTES:
- *	A lot of this is still guesstimation, but we're close...
- *
+ *	Seems to be some kind of compressed vertex morph file format, only saving the vertices 
+ *	which changed between frames, rather than all of them.
+ *	
+ *	Every time it reads a frame, it probably reads a location from the VertexHeapOffset, because
+ *	There are no pointers to this data anywhere aside from at the top.
 **/
