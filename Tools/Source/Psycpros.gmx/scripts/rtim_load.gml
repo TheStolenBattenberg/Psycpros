@@ -1,4 +1,4 @@
-///rtim_load(tim);
+///rtim_load(rtim);
 
 printf("Reading RTim File.");
 

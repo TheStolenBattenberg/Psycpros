@@ -38,6 +38,11 @@
         <script>scripts\rtim_load.gml</script>
         <script>scripts\rtim_close.gml</script>
       </scripts>
+      <scripts name="MO">
+        <script>scripts\mo_open.gml</script>
+        <script>scripts\mo_load.gml</script>
+        <script>scripts\mo_close.gml</script>
+      </scripts>
     </scripts>
     <scripts name="GUI">
       <scripts name="Private">
@@ -93,6 +98,7 @@
     <scripts name="Utility">
       <script>scripts\printf.gml</script>
       <script>scripts\get_file.gml</script>
+      <script>scripts\dec2hex.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
