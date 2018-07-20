@@ -24,26 +24,8 @@ for(var i = 0; i < ds_list_size(list); ++i) {
     //Get tab Information
     var tab         = list[| i];
     var tabName     = tab[0];
-    var tabLength   = 7 * tab[1];
+    var tabLength   = (7 * tab[1]);
     var tabSelected = tab[2];
-    
-    //Handle close button
-    if(tab[5] == true && tabSelected) {
-        if(point_in_rectangle(wmx, wmy, (xx + ww)-24, (yy + hh)-24, (xx + ww)-4, (yy + hh)-4)) {
-            if(mouse_check_button_pressed(mb_left)) {
-                if(tab[2] == true) {
-                    ds_list_delete(list, i);
-                }
-                
-                gui_tabs_select(argument0, i-1);
-            }
-        }
-        
-        draw_set_colour(c_red);
-        draw_rectangle((xx + ww)-24, (yy + hh)-24, (xx + ww)-4, (yy + hh)-4, false);
-        draw_set_colour(guic_grey1);
-        draw_rectangle((xx + ww)-24, (yy + hh)-24, (xx + ww)-4, (yy + hh)-4, true);
-    }
 
     //Set the tab colours.
     draw_set_colour(guic_white2);
@@ -82,6 +64,22 @@ for(var i = 0; i < ds_list_size(list); ++i) {
     draw_set_font(guif_ui9);
     draw_set_colour(guic_black);
     draw_text(tabOffset + (tabLength/2), yy, tabName);
+    
+    
+    //Handle close button
+    if(tab[5] == true && tabSelected) {
+        if(point_in_rectangle(wmx, wmy, (xx + ww) - 12, yy + 20, (xx + ww) - 4, yy + 28)) {
+            if(mouse_check_button_pressed(mb_left)) {
+                if(tab[2] == true) {
+                    ds_list_delete(list, i);
+                }
+                
+                gui_tabs_select(argument0, i-1);
+            }
+        }
+        
+        gui_draw_frame((xx + ww) - 12, yy + 20, 8, 8, c_red, guic_grey1);
+    }
     
     //Reset all draw commands
     draw_set_halign(fa_left);

@@ -76,6 +76,12 @@
         </scripts>
         <script>scripts\gui_menubar_draw.gml</script>
       </scripts>
+      <scripts name="Listbox">
+        <script>scripts\gui_listbox_create.gml</script>
+        <script>scripts\gui_listbox_add.gml</script>
+        <script>scripts\gui_listbox_get_selected.gml</script>
+        <script>scripts\gui_listbox_draw.gml</script>
+      </scripts>
       <script>scripts\gui_draw_frame.gml</script>
     </scripts>
     <scripts name="Buffer">

@@ -65,4 +65,5 @@ if(canvas[@ 3] == true) {
     canvas[@ 3] = false;
 }
 //Draw the canvas.
-draw_surface(canvas[2], xx, yy);
+gui_draw_frame(xx, yy, ww, hh, guic_white2, guic_grey1);
+draw_surface_stretched(canvas[2], xx+1, yy+1, ww-1, hh-1);

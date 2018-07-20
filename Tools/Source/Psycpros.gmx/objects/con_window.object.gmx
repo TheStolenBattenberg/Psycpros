@@ -265,6 +265,9 @@ wMenubar = ds_list_create(); {
 pCanvas = gui_canvas_create(); {
     gui_canvas_set_image(pCanvas, spr_test);
 }
+
+pImgList = gui_listbox_create();
+iLastImg = -1;
 </string>
           </argument>
         </arguments>
@@ -390,9 +393,14 @@ switch(gui_submenu_get(mImport, 0)) {
             
             //Add Image to canvas...
             var spr = IMAGE_GetSprite(img);
-            gui_canvas_set_image(pCanvas, spr);
             
             pool_add(pMPool, img, Pool.Data2D);
+            
+            var listEnt;
+                listEnt[0] = filename_name(file);
+                listEnt[1] = spr;
+                
+            gui_listbox_add(pImgList, listEnt);
         }
     break;
     
@@ -411,12 +419,19 @@ switch(gui_submenu_get(mImport, 0)) {
         if(!failed(rtim)) {
             var tpage = rtim_load(rtim);
             rtim_close(rtim);
+
+            var lT = tpage[@ 0];
+            for(var i = 0; i &lt; ds_list_size(lT); ++i) {
+                var img = lT[| i];
+                
+                pool_add(pMPool, img, Pool.Data2D);
             
-            //Add Image to canvas...
-            var spr = TEXPAGE_GetSprite(tpage);
-            gui_canvas_set_image(pCanvas, spr);
-            
-            pool_add(pMPool, tpage, Pool.Data2D);
+                var listEnt = array_create(2);
+                    listEnt[0] = filename_name(file) + " \#"+string(1+i);
+                    listEnt[1] = IMAGE_GetSprite(img);
+                    
+                gui_listbox_add(pImgList, listEnt);
+            }
         }
     break;
 }
@@ -568,7 +583,16 @@ gui_tabs_draw(lTabs, wWelcomeTab, 0, 32, iWidth, iHeight-64);
             <kind>1</kind>
             <string>///[Image Tool Tab]
 if(gui_tabs_get_selected(lTabs) == 1) {
-    gui_canvas_draw(pCanvas, iWidth-800, 64, 768, iHeight-112);
+    gui_canvas_draw(pCanvas, iWidth-800, 64, 784, iHeight-112);
+    
+    gui_listbox_draw(pImgList, 16, 64, iWidth-832, iHeight-250);
+    
+    var jk = gui_listbox_get_selected(pImgList);
+    if(iLastImg != jk) {
+        var img = ds_list_find_value(pImgList[@ 0], jk);
+        gui_canvas_set_image(pCanvas, img[@ 1]);
+        iLastImg = jk;
+    }
 }
 </string>
           </argument>
