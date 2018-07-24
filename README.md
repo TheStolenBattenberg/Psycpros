@@ -1,31 +1,14 @@
 # Psycpros
-Psycpros gets its name from a translation error in the PAL and NTSC versions of King's Field II.
+A tool for extracting, converting and viewing files from early From Software titles.
 
-## But what is it?
-Psycpros is a collection of documentation and tools for messing with early FromSoftware files.
+## Used Libraries
+- OpenTK (https://github.com/opentk/opentk)
 
-### *It's main features are:*
-- Well written C File format specifications, to make future tool writing easier
-- Written in GML
-- Easy interface
-
-### *Planned features are:*
-- Importing early FromSoftware file formats, and file formats they used (Seq, Tim, Tmd etc...)
-- Exporting to a choice of common file formats
+## Build Instructions
+1. Download OpenTK 3.0.0 and place inside the 'lib' folder. (Inside 'Source\Psycpros_CSharp\')
+2. Open in Visual Studio
+3. Satisfied?
 
 ### *Supported Games:*
 - [_Partial_] King's Field II
 - [_Partial_] King's Field III
-
-### *Planned Game/Program Support:*
-- Sword of Moonlight
-- King's Field I / IV
-- Shadow Tower / Shadow Tower Abyss
-- Armoured Core Series
-- Eternal Ring
-  
-  
-  
-### *Screenshots*
-![Screenshot](https://cdn.pbrd.co/images/Hu2RDZ3.png)
-![Screenshot](https://cdn.pbrd.co/images/Hu2UiYe.png)
