@@ -37,7 +37,7 @@ namespace Psycpros.Reader {
 
                 //If the file location is not fake, add it to list.
                 if(!((End - Start) <= 0)) {
-                    uint f = (Start << 16) & (End & 0xFFFF);
+                    uint f = (Start << 16) | (End & 0xFFFF);
 
                     pTFileLocation[iFileNumber] = f;
                     iFileNumber++;           
@@ -64,13 +64,18 @@ namespace Psycpros.Reader {
 
             uint   FileStartOffset = 2048 * ((pTFileLocation[fileID] >> 16) & 0xFFFF);
             uint   FileEndOffset = 2048 * ((pTFileLocation[fileID] & 0xFFFF));
-            uint   FileSize = FileEndOffset - FileStartOffset;
+            int    FileSize = (int) (FileEndOffset - FileStartOffset);
             string FileName = "File_" + fileID.ToString() + "." + FileType;
 
-            // Save file
-            // TO - DO
-
+            // Extract the file.
             Console.Write("Extracting " + FileName); Console.WriteLine();
+
+            BinaryWriter fOut = new BinaryWriter(File.Open(path + "\\" + FileName, FileMode.CreateNew));
+            pTFile.BaseStream.Seek(FileStartOffset, SeekOrigin.Begin);
+
+            pTFile.BaseStream.CopyTo(fOut.BaseStream, FileSize);
+            fOut.BaseStream.SetLength(FileSize);
+            fOut.Close();
         }
     }
 }

@@ -25,9 +25,10 @@ namespace Psycpros_CSharp
 
         private void extractToolStripMenuItem_Click(object sender, EventArgs e) {            
             ITReader TFile = new ITReader(new Utility().GetOpenFilename(""));
+            string path = new Utility().GetOpenDirectory();
 
-            for(uint i = 0; i < TFile.iFileNumber; ++i) {
-                TFile.Extract(i, "");
+            for (uint i = 0; i < TFile.iFileNumber; ++i) {
+                TFile.Extract(i, path);
             }           
         }
     }
