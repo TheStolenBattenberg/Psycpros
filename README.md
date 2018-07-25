@@ -5,7 +5,7 @@ A tool for extracting, converting and viewing files from early From Software tit
 - OpenTK (https://github.com/opentk/opentk)
 
 ## Build Instructions
-1. Download OpenTK 3.0.0 and place inside the 'lib' folder. (Inside 'Source\Psycpros_CSharp\')
+1. Download OpenTK 3.0.0 and place inside the 'lib' folder. (Inside 'Source\')
 2. Open in Visual Studio
 3. Satisfied?
 
