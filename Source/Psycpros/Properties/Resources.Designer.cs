@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Psycpros_CSharp.Properties
+namespace Psycpros.Properties
 {
 
 

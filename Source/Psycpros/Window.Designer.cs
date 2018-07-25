@@ -1,4 +1,4 @@
-﻿namespace Psycpros_CSharp
+﻿namespace Psycpros
 {
     partial class Psycpros
     {

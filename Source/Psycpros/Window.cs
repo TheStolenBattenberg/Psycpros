@@ -10,8 +10,7 @@ using System.Windows.Forms;
 
 using Psycpros.Reader;
 
-namespace Psycpros_CSharp
-{
+namespace Psycpros {
     public partial class Psycpros : Form
     {
         public Psycpros()

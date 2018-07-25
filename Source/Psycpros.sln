@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Psycpros_CSharp", "Psycpros_CSharp\Psycpros_CSharp.csproj", "{16D5E6C1-1D7C-4AE2-8592-05945597C818}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Psycpros", "Psycpros\Psycpros.csproj", "{16D5E6C1-1D7C-4AE2-8592-05945597C818}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,8 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Psycpros_CSharp
-{
+namespace Psycpros {
     static class Program
     {
         /// <summary>
