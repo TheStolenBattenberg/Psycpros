@@ -31,10 +31,14 @@ namespace Psycpros {
         /**
          * MenuBar Functionality.
         **/
-        private void extractToolStripMenuItem_Click(object sender, EventArgs e) {            
-            ITReader TFile = new ITReader(new Utility().GetOpenFilename(""));
-            string path = new Utility().GetOpenDirectory();
+        private void extractToolStripMenuItem_Click(object sender, EventArgs e) {
+            //Open the T File and read it's content.
+            ITReader TFile = new ITReader(new Utility().GetOpenFilename("Select a T file to extract", "From Software Archive (*.T)|*.T"));
 
+            //Get a path to extract the files to.
+            string path = new Utility().GetOpenDirectory("Extract to where?");
+
+            //Extract each file.
             for (uint i = 0; i < TFile.iFileNumber; ++i) {
                 TFile.Extract(i, path);
             }           
