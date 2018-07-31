@@ -9,23 +9,26 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Psycpros.Reader;
+using Psycpros.Psycode;
 
-using OpenTK.Graphics.OpenGL4;
+using OpenTK;
+using OpenTK.Graphics.OpenGL;
 
 namespace Psycpros {
     public partial class Psycpros : Form {
+        private Timer T;
+        double dLastTime = 0;
+        uint iFrames = 0;
+
+        private CRenderer pRenderer;
+        private ICamera pCamera;
+        double iRotCam = 0;
+
         /**
          * Constructor.
         **/
         public Psycpros() {
             InitializeComponent();
-        }
-
-        /**
-         * Functions get called when Psycpros initally loads.
-        **/
-        private void Psycpros_Load(object o, EventArgs e) {
-
         }
 
         /**
@@ -49,19 +52,66 @@ namespace Psycpros {
         **/
         private void glControl1_Paint(object sender, PaintEventArgs e) {
             glControl1.MakeCurrent();
-
-            //Clear buffer.
-            GL.Clear(ClearBufferMask.ColorBufferBit);
-
-            //Render & Update code here.
-
-
-            //Swap the internal render targets for double buffered glory.
-            glControl1.SwapBuffers();
         }
 
         private void glControl1_Resize(object sender, EventArgs e) {
-            GL.Viewport(0, 0, glControl1.ClientSize.Width, glControl1.ClientSize.Height);
+            if (glControl1.ClientSize.Height == 0)
+                glControl1.ClientSize = new System.Drawing.Size(glControl1.ClientSize.Width, 1);
+
+            GL.Viewport(glControl1.ClientRectangle.X, glControl1.ClientRectangle.Y, 
+                glControl1.ClientSize.Width, glControl1.ClientSize.Height);
+
+        }
+
+        private void glControl1_Load(object sender, EventArgs e) {
+            glControl1_Resize(sender, e);
+
+            //Create a Camera
+            pCamera = new ICamera(new Vector4(-1f, 1f, -1f, 1f), Vector3.UnitY);
+            pCamera.SetProjectionPerspective(
+                glControl1.ClientSize.Width / glControl1.ClientSize.Height, //Aspect
+                75, //FOV
+                0.1f, 1024.0f); //Near, Far
+
+            //Set up the Renderer.
+            pRenderer = new CRenderer(pCamera);
+            pRenderer.SetClearColour(0.0f, 0.0f, 0.4f, 1.0f);
+
+            //Set up a timer
+            T = new Timer();
+            T.Interval = 1000 / 50;
+            T.Tick += new EventHandler(glUpdate);
+            T.Start();
+
+            dLastTime = Environment.TickCount;
+        }
+
+
+        //
+        // OpenGL Updates
+        //
+        void glUpdate(object sender, EventArgs e) {
+            //Rotate Camera
+            iRotCam -= 2.0f;
+            if (iRotCam > 180.0d) { iRotCam = -180.0d; }
+
+            float rotVal = (float)Math.PI * ((float)iRotCam / 180.0f);
+            pCamera.Position(new Vector3((float)Math.Cos(rotVal) * 8.0f, 0.0f, (float)-Math.Sin(rotVal) * 8.0f));
+
+            //Render
+            pRenderer.Update();
+
+            //Calculate Frames Per Second
+            double ct = Environment.TickCount;
+            iFrames++;
+            if((ct - dLastTime) >= 1000.0d) {
+                toolStripStatusLabel1.Text = "FPS: " + iFrames.ToString() +", MS: "+(ct - dLastTime).ToString();
+                dLastTime = ct;
+                iFrames = 0;
+            }
+
+            //Swap buffers, for double buffered glory.  
+            glControl1.SwapBuffers();
         }
     }
 }

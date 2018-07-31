@@ -54,6 +54,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Psycode\CMeshUtility.cs" />
+    <Compile Include="Psycode\ICamera.cs" />
+    <Compile Include="Psycode\ISimpleMesh.cs" />
+    <Compile Include="Psycode\CRenderer.cs" />
+    <Compile Include="Psycode\IMesh.cs" />
+    <Compile Include="Psycode\IShader.cs" />
+    <Compile Include="Psycode\ITexture.cs" />
     <Compile Include="Window.cs">
       <SubType>Form</SubType>
     </Compile>

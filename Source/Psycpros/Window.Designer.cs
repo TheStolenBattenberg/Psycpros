@@ -38,11 +38,11 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ArchiveTool = new System.Windows.Forms.TabPage();
+            this.ArchiveList = new System.Windows.Forms.ListView();
             this.ToolBar = new System.Windows.Forms.TabControl();
             this.ImageTool = new System.Windows.Forms.TabPage();
             this.glControl1 = new OpenTK.GLControl();
             this.ImageList = new System.Windows.Forms.ListView();
-            this.ArchiveList = new System.Windows.Forms.ListView();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.ArchiveTool.SuspendLayout();
@@ -134,6 +134,14 @@
             this.ArchiveTool.Text = "Archive";
             this.ArchiveTool.UseVisualStyleBackColor = true;
             // 
+            // ArchiveList
+            // 
+            this.ArchiveList.Location = new System.Drawing.Point(6, 7);
+            this.ArchiveList.Name = "ArchiveList";
+            this.ArchiveList.Size = new System.Drawing.Size(207, 376);
+            this.ArchiveList.TabIndex = 2;
+            this.ArchiveList.UseCompatibleStateImageBehavior = false;
+            // 
             // ToolBar
             // 
             this.ToolBar.Controls.Add(this.ArchiveTool);
@@ -159,30 +167,30 @@
             // 
             // glControl1
             // 
+            this.glControl1.AutoSize = true;
             this.glControl1.BackColor = System.Drawing.Color.Black;
-            this.glControl1.Location = new System.Drawing.Point(220, 7);
+            this.glControl1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.glControl1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.glControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.glControl1.Location = new System.Drawing.Point(210, 3);
             this.glControl1.Name = "glControl1";
-            this.glControl1.Size = new System.Drawing.Size(624, 376);
+            this.glControl1.Size = new System.Drawing.Size(639, 383);
             this.glControl1.TabIndex = 2;
-            this.glControl1.VSync = false;
+            this.glControl1.VSync = true;
+
+            this.glControl1.Load += new System.EventHandler(this.glControl1_Load);
             this.glControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.glControl1_Paint);
             this.glControl1.Resize += new System.EventHandler(this.glControl1_Resize);
             // 
             // ImageList
             // 
-            this.ImageList.Location = new System.Drawing.Point(6, 7);
+            this.ImageList.BackgroundImageTiled = true;
+            this.ImageList.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ImageList.Location = new System.Drawing.Point(3, 3);
             this.ImageList.Name = "ImageList";
-            this.ImageList.Size = new System.Drawing.Size(207, 376);
+            this.ImageList.Size = new System.Drawing.Size(207, 383);
             this.ImageList.TabIndex = 1;
             this.ImageList.UseCompatibleStateImageBehavior = false;
-            // 
-            // ArchiveList
-            // 
-            this.ArchiveList.Location = new System.Drawing.Point(6, 7);
-            this.ArchiveList.Name = "ArchiveList";
-            this.ArchiveList.Size = new System.Drawing.Size(207, 376);
-            this.ArchiveList.TabIndex = 2;
-            this.ArchiveList.UseCompatibleStateImageBehavior = false;
             // 
             // Psycpros
             // 
@@ -196,7 +204,6 @@
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Psycpros";
             this.Text = "Psycpros";
-            this.Load += new System.EventHandler(this.Psycpros_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -204,6 +211,7 @@
             this.ArchiveTool.ResumeLayout(false);
             this.ToolBar.ResumeLayout(false);
             this.ImageTool.ResumeLayout(false);
+            this.ImageTool.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
