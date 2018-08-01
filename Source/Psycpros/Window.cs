@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using System.IO;
 
 using Psycpros.Reader;
 using Psycpros.Psycode;
@@ -20,8 +22,10 @@ namespace Psycpros {
         double dLastTime = 0;
         uint iFrames = 0;
 
-        private CRenderer pRenderer;
+        private CRenderer pRenderer = null;
         private ICamera pCamera;
+
+        //Temporary
         double iRotCam = 0;
 
         /**
@@ -44,7 +48,28 @@ namespace Psycpros {
             //Extract each file.
             for (uint i = 0; i < TFile.iFileNumber; ++i) {
                 TFile.Extract(i, path);
-            }           
+            }
+
+            //Close file to save hashes.
+            TFile.Close();
+        }
+
+        private void importToolStripMenuItem_Click(object sender, EventArgs e) {
+            if(pRenderer == null) {
+                return;
+            }
+
+            //Import the TMD file
+            ITMDFormat TMD;
+            TMD = new ITMDFormat();
+            string FileName = new Utility().GetOpenFilename("Select a TMD file", "Sony Playstation Model (*.TMD)|*.TMD");
+            TMD.ImportFromFile(FileName);
+
+            //Add Model to renderer
+            pRenderer.pModels.Add(TMD.GetModel());
+
+            //Add Model to list
+            ImageList.Items.Add(Path.GetFileNameWithoutExtension(FileName));
         }
 
         /**
@@ -67,7 +92,7 @@ namespace Psycpros {
             glControl1_Resize(sender, e);
 
             //Create a Camera
-            pCamera = new ICamera(new Vector4(-1f, 1f, -1f, 1f), Vector3.UnitY);
+            pCamera = new ICamera(new Vector4(-1f, 1f, -1f, 1f), -Vector3.UnitY);
             pCamera.SetProjectionPerspective(
                 glControl1.ClientSize.Width / glControl1.ClientSize.Height, //Aspect
                 75, //FOV
@@ -92,7 +117,7 @@ namespace Psycpros {
         //
         void glUpdate(object sender, EventArgs e) {
             //Rotate Camera
-            iRotCam -= 2.0f;
+            iRotCam -= 0.5f;
             if (iRotCam > 180.0d) { iRotCam = -180.0d; }
 
             float rotVal = (float)Math.PI * ((float)iRotCam / 180.0f);
@@ -112,6 +137,12 @@ namespace Psycpros {
 
             //Swap buffers, for double buffered glory.  
             glControl1.SwapBuffers();
+        }
+
+        private void ImageList_SelectedIndexChanged(object sender, EventArgs e) {
+            if (ImageList.SelectedIndices.Count > 0) {
+                pRenderer.iSelectedModel = ImageList.SelectedIndices[0];
+            }
         }
     }
 }

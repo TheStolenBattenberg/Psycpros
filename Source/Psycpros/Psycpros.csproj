@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{16D5E6C1-1D7C-4AE2-8592-05945597C818}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Psycpros</RootNamespace>
     <AssemblyName>Psycpros</AssemblyName>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="OpenTK, Version=3.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -56,11 +59,14 @@
   <ItemGroup>
     <Compile Include="Psycode\CMeshUtility.cs" />
     <Compile Include="Psycode\ICamera.cs" />
+    <Compile Include="Psycode\ICheckSum.cs" />
+    <Compile Include="Psycode\IModel.cs" />
     <Compile Include="Psycode\ISimpleMesh.cs" />
     <Compile Include="Psycode\CRenderer.cs" />
     <Compile Include="Psycode\IMesh.cs" />
     <Compile Include="Psycode\IShader.cs" />
     <Compile Include="Psycode\ITexture.cs" />
+    <Compile Include="Reader\ITMDFormat.cs" />
     <Compile Include="Window.cs">
       <SubType>Form</SubType>
     </Compile>

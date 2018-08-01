@@ -114,8 +114,20 @@ namespace Psycpros.Psycode {
                             lVertex[p.Indices[i]].x,
                             lVertex[p.Indices[i]].y,
                             lVertex[p.Indices[i]].z);
+                        GL.VertexAttrib3(1,
+                            lNormal[p.nIndex[i]].x,
+                            lNormal[p.nIndex[i]].y,
+                            lNormal[p.nIndex[i]].z);
+                        GL.VertexAttrib2(2,
+                            p.coords[i].u,
+                            p.coords[i].v);
+                        GL.VertexAttrib4(3,
+                            p.shade[i].r / 255.0f,
+                            p.shade[i].g / 255.0f,
+                            p.shade[i].b / 255.0f,
+                            p.alpha / 255.0f);
                     }
-                    break;
+                    break; 
 
                 case 4: //We split quads into two triangles on render.
                     for (byte i = 0; i < p.numVIndices; ++i) { //First Tri
@@ -123,6 +135,18 @@ namespace Psycpros.Psycode {
                             lVertex[p.Indices[i]].x,
                             lVertex[p.Indices[i]].y,
                             lVertex[p.Indices[i]].z);
+                        GL.VertexAttrib3(1,
+                            lNormal[p.nIndex[i]].x,
+                            lNormal[p.nIndex[i]].y,
+                            lNormal[p.nIndex[i]].z);
+                        GL.VertexAttrib2(2,
+                            p.coords[i].u,
+                            p.coords[i].v);
+                        GL.VertexAttrib4(3,
+                            p.shade[i].r / 255.0f,
+                            p.shade[i].g / 255.0f,
+                            p.shade[i].b / 255.0f,
+                            p.alpha / 255.0f);
                     }
 
                     for (byte i = 1; i < p.numVIndices; ++i) { //Second Tri
@@ -130,6 +154,18 @@ namespace Psycpros.Psycode {
                             lVertex[p.Indices[i]].x,
                             lVertex[p.Indices[i]].y,
                             lVertex[p.Indices[i]].z);
+                        GL.VertexAttrib3(1,
+                            lNormal[p.nIndex[i]].x,
+                            lNormal[p.nIndex[i]].y,
+                            lNormal[p.nIndex[i]].z);
+                        GL.VertexAttrib2(2,
+                            p.coords[i].u,
+                            p.coords[i].v);
+                        GL.VertexAttrib4(3,
+                            p.shade[i].r / 255.0f,
+                            p.shade[i].g / 255.0f,
+                            p.shade[i].b / 255.0f,
+                            p.alpha / 255.0f);
                     }
                     break;
             }
@@ -145,6 +181,12 @@ namespace Psycpros.Psycode {
 
             //End Drawing Triangles.
             GL.End();
+        }
+
+        public void Free() {
+            lVertex.Clear();
+            lNormal.Clear();
+            lPrimitive.Clear();
         }
     }
 }

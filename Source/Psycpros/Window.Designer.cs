@@ -35,19 +35,23 @@
             this.tArchiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sonyPlaystationTMDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ArchiveTool = new System.Windows.Forms.TabPage();
             this.ArchiveList = new System.Windows.Forms.ListView();
             this.ToolBar = new System.Windows.Forms.TabControl();
-            this.ImageTool = new System.Windows.Forms.TabPage();
+            this.ModelTool = new System.Windows.Forms.TabPage();
+            this.ImageList = new System.Windows.Forms.ListBox();
             this.glControl1 = new OpenTK.GLControl();
-            this.ImageList = new System.Windows.Forms.ListView();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.ArchiveTool.SuspendLayout();
             this.ToolBar.SuspendLayout();
-            this.ImageTool.SuspendLayout();
+            this.ModelTool.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -55,7 +59,8 @@
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.psycprosToolStripMenuItem,
-            this.archiveToolStripMenuItem});
+            this.archiveToolStripMenuItem,
+            this.modelToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(860, 24);
@@ -90,8 +95,8 @@
             this.openToolStripMenuItem,
             this.extractToolStripMenuItem});
             this.tArchiveToolStripMenuItem.Name = "tArchiveToolStripMenuItem";
-            this.tArchiveToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.tArchiveToolStripMenuItem.Text = "T Archive";
+            this.tArchiveToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.tArchiveToolStripMenuItem.Text = "From Software Archive (*.T)";
             // 
             // openToolStripMenuItem
             // 
@@ -105,6 +110,29 @@
             this.extractToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.extractToolStripMenuItem.Text = "Extract";
             this.extractToolStripMenuItem.Click += new System.EventHandler(this.extractToolStripMenuItem_Click);
+            // 
+            // modelToolStripMenuItem
+            // 
+            this.modelToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sonyPlaystationTMDToolStripMenuItem});
+            this.modelToolStripMenuItem.Name = "modelToolStripMenuItem";
+            this.modelToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.modelToolStripMenuItem.Text = "Model";
+            // 
+            // sonyPlaystationTMDToolStripMenuItem
+            // 
+            this.sonyPlaystationTMDToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importToolStripMenuItem});
+            this.sonyPlaystationTMDToolStripMenuItem.Name = "sonyPlaystationTMDToolStripMenuItem";
+            this.sonyPlaystationTMDToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.sonyPlaystationTMDToolStripMenuItem.Text = "Sony Playstation Model (*.TMD)";
+            // 
+            // importToolStripMenuItem
+            // 
+            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.importToolStripMenuItem.Text = "Import";
+            this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -145,7 +173,7 @@
             // ToolBar
             // 
             this.ToolBar.Controls.Add(this.ArchiveTool);
-            this.ToolBar.Controls.Add(this.ImageTool);
+            this.ToolBar.Controls.Add(this.ModelTool);
             this.ToolBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ToolBar.Location = new System.Drawing.Point(0, 24);
             this.ToolBar.Name = "ToolBar";
@@ -153,44 +181,57 @@
             this.ToolBar.Size = new System.Drawing.Size(860, 415);
             this.ToolBar.TabIndex = 2;
             // 
-            // ImageTool
+            // ModelTool
             // 
-            this.ImageTool.Controls.Add(this.glControl1);
-            this.ImageTool.Controls.Add(this.ImageList);
-            this.ImageTool.Location = new System.Drawing.Point(4, 22);
-            this.ImageTool.Name = "ImageTool";
-            this.ImageTool.Padding = new System.Windows.Forms.Padding(3);
-            this.ImageTool.Size = new System.Drawing.Size(852, 389);
-            this.ImageTool.TabIndex = 1;
-            this.ImageTool.Text = "Image";
-            this.ImageTool.UseVisualStyleBackColor = true;
+            this.ModelTool.Controls.Add(this.button1);
+            this.ModelTool.Controls.Add(this.ImageList);
+            this.ModelTool.Controls.Add(this.glControl1);
+            this.ModelTool.Location = new System.Drawing.Point(4, 22);
+            this.ModelTool.Name = "ModelTool";
+            this.ModelTool.Padding = new System.Windows.Forms.Padding(3);
+            this.ModelTool.Size = new System.Drawing.Size(852, 389);
+            this.ModelTool.TabIndex = 1;
+            this.ModelTool.Text = "Model";
+            this.ModelTool.UseVisualStyleBackColor = true;
+            // 
+            // ImageList
+            // 
+            this.ImageList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.ImageList.FormattingEnabled = true;
+            this.ImageList.Location = new System.Drawing.Point(3, 3);
+            this.ImageList.Name = "ImageList";
+            this.ImageList.Size = new System.Drawing.Size(201, 277);
+            this.ImageList.TabIndex = 3;
+            this.ImageList.SelectedIndexChanged += new System.EventHandler(this.ImageList_SelectedIndexChanged);
             // 
             // glControl1
             // 
+            this.glControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.glControl1.AutoSize = true;
             this.glControl1.BackColor = System.Drawing.Color.Black;
             this.glControl1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.glControl1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.glControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.glControl1.Location = new System.Drawing.Point(210, 3);
             this.glControl1.Name = "glControl1";
             this.glControl1.Size = new System.Drawing.Size(639, 383);
             this.glControl1.TabIndex = 2;
             this.glControl1.VSync = true;
-
             this.glControl1.Load += new System.EventHandler(this.glControl1_Load);
             this.glControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.glControl1_Paint);
             this.glControl1.Resize += new System.EventHandler(this.glControl1_Resize);
             // 
-            // ImageList
+            // button1
             // 
-            this.ImageList.BackgroundImageTiled = true;
-            this.ImageList.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ImageList.Location = new System.Drawing.Point(3, 3);
-            this.ImageList.Name = "ImageList";
-            this.ImageList.Size = new System.Drawing.Size(207, 383);
-            this.ImageList.TabIndex = 1;
-            this.ImageList.UseCompatibleStateImageBehavior = false;
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Location = new System.Drawing.Point(3, 360);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(98, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Export...";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Psycpros
             // 
@@ -210,8 +251,8 @@
             this.statusStrip1.PerformLayout();
             this.ArchiveTool.ResumeLayout(false);
             this.ToolBar.ResumeLayout(false);
-            this.ImageTool.ResumeLayout(false);
-            this.ImageTool.PerformLayout();
+            this.ModelTool.ResumeLayout(false);
+            this.ModelTool.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,10 +271,14 @@
         private System.Windows.Forms.ToolStripMenuItem extractToolStripMenuItem;
         private System.Windows.Forms.TabPage ArchiveTool;
         private System.Windows.Forms.TabControl ToolBar;
-        private System.Windows.Forms.TabPage ImageTool;
+        private System.Windows.Forms.TabPage ModelTool;
         private OpenTK.GLControl glControl1;
-        private System.Windows.Forms.ListView ImageList;
         private System.Windows.Forms.ListView ArchiveList;
+        private System.Windows.Forms.ToolStripMenuItem modelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sonyPlaystationTMDToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
+        private System.Windows.Forms.ListBox ImageList;
+        private System.Windows.Forms.Button button1;
     }
 }
 

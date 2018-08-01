@@ -15,6 +15,9 @@ namespace Psycpros.Reader {
         private uint iLastID;
         private string sLastType;
 
+        //Hasher
+        private Psycode.ICheckSum pHasher;
+
         //Public variables
         public uint iFileNumber = 0;
 
@@ -22,6 +25,8 @@ namespace Psycpros.Reader {
          * Constructor
         **/
         public ITReader(string filepath) {
+            pHasher = new Psycode.ICheckSum("filehashtable");
+
             try
             {
                 //Open the TFile
@@ -124,13 +129,15 @@ namespace Psycpros.Reader {
             int    FileSize = (int) (FileEndOffset - FileStartOffset);     
                   
             string FileType = "";
-            string FileName = "File_" + fileID.ToString() + ".";
+
+            pTFile.BaseStream.Seek(FileStartOffset, SeekOrigin.Begin);
+            string FileName = pHasher.GetNameFromHash(pTFile.ReadBytes(FileSize), fileID) + ".";
+
             ValidateFile(FileStartOffset, out FileType, fileID);
 
             // Extract the file.
-            Console.Write("Extracting " + FileName + FileType); Console.WriteLine();
-
             BinaryWriter fOut = new BinaryWriter(File.Open(path + "\\" + FileName + FileType, FileMode.CreateNew));
+
             pTFile.BaseStream.Seek(FileStartOffset, SeekOrigin.Begin);
             
             pTFile.BaseStream.CopyTo(fOut.BaseStream, FileSize);
@@ -139,6 +146,10 @@ namespace Psycpros.Reader {
 
             iLastID = fileID;
             sLastType = FileType;
+        }
+
+        public void Close() {
+            pHasher.SaveHashFile("filehashtable");
         }
     }
 }
