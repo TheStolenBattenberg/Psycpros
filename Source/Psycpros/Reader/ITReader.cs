@@ -131,12 +131,22 @@ namespace Psycpros.Reader {
             string FileType = "";
 
             pTFile.BaseStream.Seek(FileStartOffset, SeekOrigin.Begin);
-            string FileName = pHasher.GetNameFromHash(pTFile.ReadBytes(FileSize), fileID) + ".";
+            string FileName = pHasher.GetNameFromHash(pTFile.ReadBytes(FileSize));
 
             ValidateFile(FileStartOffset, out FileType, fileID);
 
             // Extract the file.
-            BinaryWriter fOut = new BinaryWriter(File.Open(path + "\\" + FileName + FileType, FileMode.CreateNew));
+            int fileId = 0;
+            string file = path + "\\" + FileName + ((fileId > 0) ? "_" + fileId.ToString() : "")
+            + "." + FileType;
+            while (File.Exists(file)) {
+                file = path + "\\" + FileName + ((fileId > 0) ? "_" + fileId.ToString() : "") + "." + FileType;
+                fileId++;
+            }
+
+
+            Console.WriteLine("Extracting " + file + "...");
+            BinaryWriter fOut = new BinaryWriter(File.Open(file, FileMode.CreateNew));
 
             pTFile.BaseStream.Seek(FileStartOffset, SeekOrigin.Begin);
             

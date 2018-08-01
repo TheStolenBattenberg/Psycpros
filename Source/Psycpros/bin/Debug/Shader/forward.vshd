@@ -1,0 +1,31 @@
+#version 330
+
+//VInput
+layout(location = 0) in vec3 in_vPosition;
+layout(location = 1) in vec3 in_vNormal;
+layout(location = 2) in vec2 in_vTexcoord;
+layout(location = 3) in vec4 in_vColour;
+
+//VOutput
+out vec3 vNormal;
+out vec2 vTexcoord;
+out vec4 vColour;
+
+//Uniforms
+uniform mat4 MAT_WORLD;
+uniform mat4 MAT_VIEW;
+uniform mat4 MAT_PROJ; 
+
+//Entry
+void main() {
+	//Build MVP Matrix
+	mat4 mMVP = MAT_PROJ * MAT_VIEW;
+	
+	//Vertex position, transformed by the MVP matrix.
+	gl_Position = mMVP * vec4(in_vPosition, 1.0f);
+	
+	//Transfer other datas.
+	vNormal = normalize(in_vNormal);
+	vTexcoord = in_vTexcoord;
+	vColour = in_vColour;
+}

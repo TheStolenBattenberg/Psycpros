@@ -11,7 +11,7 @@
 *.userprefs
 
 # Build results
-[Dd]ebug/
+[
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
@@ -19,8 +19,22 @@
 [Xx]86/
 [Bb]uild/
 bld/
-[Bb]in/
 [Oo]bj/
+
+# Ignore file formats
+*.tmd
+*.tim
+*.mo
+*.wot
+*.dll
+*.exe
+*.exe.manifest
+*.exe.config
+
+# Build / Bin Directory
+!bin/Debug/
+!bin/Debug/Shader/
+!bin/Debug/filehashtable
 
 # Visual Studio 2015 cache/options directory
 .vs/

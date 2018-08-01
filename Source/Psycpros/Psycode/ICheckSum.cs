@@ -26,16 +26,14 @@ namespace Psycpros.Psycode {
 
         }
 
-        public string GetNameFromHash(byte[] str, uint index) {
+        public string GetNameFromHash(byte[] str) {
             string b = System.Text.Encoding.UTF8.GetString(crypto.ComputeHash(str)); 
             
             if (mHash.ContainsKey(b)) {
-                Console.WriteLine("Got name from Hash Value: " + mHash[b]);
                 return mHash[b];
             }
-            mHash[b] = "unknown_" + ((index < 10) ? "0" + index.ToString() : index.ToString());
+            mHash[b] = "unknown";
 
-            Console.WriteLine("Added new Hash Value: " + mHash[b] + ", "+ b);
             return mHash[b];
         }
 
@@ -50,10 +48,6 @@ namespace Psycpros.Psycode {
                     string val = sr.ReadString();
 
                     mHash.Add(key, val);
-                    Console.WriteLine("Loaded Hash Identifier { ");
-                    Console.WriteLine("    Key: " + key);
-                    Console.WriteLine("    Val: " + val);
-                    Console.WriteLine("}");
                 }
                 sr.Close();
             }catch (Exception e) {

@@ -1,0 +1,17 @@
+#version 330
+
+//FInput
+in vec3 vNormal;
+in vec2 vTexcoord;
+in vec4 vColour;
+
+//FOutput
+out vec4 out_vColour;
+
+//Uniforms
+
+//Entry
+void main() {
+	//Submit our colour to the screen.
+	out_vColour = vColour;
+}
