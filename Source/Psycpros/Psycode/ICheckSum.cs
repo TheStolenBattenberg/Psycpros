@@ -8,14 +8,17 @@ using System.IO;
 
 namespace Psycpros.Psycode {
     class ICheckSum {
-        private Dictionary<string, string> mHash;
+        private Dictionary<string, string> mFiles;
+        private Dictionary<string, string> mDirs;
+
         private MD5CryptoServiceProvider crypto;
         /**
          * Constructor
         **/
         public ICheckSum(string hashfile) {
             //Create hash dictonary
-            mHash = new Dictionary<string, string>();
+            mFiles = new Dictionary<string, string>();
+            mDirs  = new Dictionary<string, string>();
 
             //Create CryptoProvider
             crypto = new MD5CryptoServiceProvider();
@@ -26,15 +29,26 @@ namespace Psycpros.Psycode {
 
         }
 
-        public string GetNameFromHash(byte[] str) {
+        public string GetDirFromHash(byte[] str, string defdir) {
+            string b = System.Text.Encoding.UTF8.GetString(crypto.ComputeHash(str));
+
+            if(mDirs.ContainsKey(b)) {
+                return mDirs[b];
+            }
+
+            mDirs[b] = defdir;
+            return mDirs[b];
+        }
+
+        public string GetNameFromHash(byte[] str, string defname) {
             string b = System.Text.Encoding.UTF8.GetString(crypto.ComputeHash(str)); 
             
-            if (mHash.ContainsKey(b)) {
-                return mHash[b];
+            if (mFiles.ContainsKey(b)) {
+                return mFiles[b];
             }
-            mHash[b] = "unknown";
+            mFiles[b] = defname;
 
-            return mHash[b];
+            return mFiles[b];
         }
 
         private void ReadHashFile(string filepath) {
@@ -46,8 +60,10 @@ namespace Psycpros.Psycode {
                 while(sr.BaseStream.Position < sr.BaseStream.Length) {
                     string key = sr.ReadString();
                     string val = sr.ReadString();
+                    string dir = sr.ReadString();
 
-                    mHash.Add(key, val);
+                    mFiles.Add(key, val);
+                    mDirs.Add(key, dir);
                 }
                 sr.Close();
             }catch (Exception e) {
@@ -63,9 +79,10 @@ namespace Psycpros.Psycode {
                 BinaryWriter f = new BinaryWriter(File.Open(filepath, FileMode.Truncate));
 
                 //write hashes
-                foreach(KeyValuePair<string, string> kv in mHash) {
+                foreach(KeyValuePair<string, string> kv in mFiles) {
                     f.Write(kv.Key);
                     f.Write(kv.Value);
+                    f.Write(mDirs[kv.Key]);
                 }
 
                 f.Close();

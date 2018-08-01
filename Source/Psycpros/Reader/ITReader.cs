@@ -14,7 +14,7 @@ namespace Psycpros.Reader {
         private uint[] pTFileLocation;
         private uint iLastID;
         private string sLastType;
-
+        private string sTName;
         //Hasher
         private Psycode.ICheckSum pHasher;
 
@@ -27,6 +27,8 @@ namespace Psycpros.Reader {
         public ITReader(string filepath) {
             pHasher = new Psycode.ICheckSum("filehashtable");
 
+            sTName = Path.GetFileNameWithoutExtension(filepath);
+                
             try
             {
                 //Open the TFile
@@ -130,12 +132,21 @@ namespace Psycpros.Reader {
                   
             string FileType = "";
 
+            //Get the File Info from hash.
             pTFile.BaseStream.Seek(FileStartOffset, SeekOrigin.Begin);
-            string FileName = pHasher.GetNameFromHash(pTFile.ReadBytes(FileSize));
+            byte[] pFile = pTFile.ReadBytes(FileSize);
 
+            //Get Name and directory
+            string FileName = pHasher.GetNameFromHash(pFile, fileID.ToString());
+            path = path + "\\" + pHasher.GetDirFromHash(pFile, sTName);
+            if(!Directory.Exists(path)) {
+                Directory.CreateDirectory(path);
+            }
+
+            //Validate the file type
             ValidateFile(FileStartOffset, out FileType, fileID);
 
-            // Extract the file.
+            //Get real file name
             int fileId = 0;
             string file = path + "\\" + FileName + ((fileId > 0) ? "_" + fileId.ToString() : "")
             + "." + FileType;
@@ -144,7 +155,7 @@ namespace Psycpros.Reader {
                 fileId++;
             }
 
-
+            //Extract the file
             Console.WriteLine("Extracting " + file + "...");
             BinaryWriter fOut = new BinaryWriter(File.Open(file, FileMode.CreateNew));
 
