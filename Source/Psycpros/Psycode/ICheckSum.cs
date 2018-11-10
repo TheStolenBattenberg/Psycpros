@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO;
 
@@ -12,6 +9,8 @@ namespace Psycpros.Psycode {
         private Dictionary<string, string> mDirs;
 
         private MD5CryptoServiceProvider crypto;
+
+        private string sFilename = "";
         /**
          * Constructor
         **/
@@ -19,6 +18,9 @@ namespace Psycpros.Psycode {
             //Create hash dictonary
             mFiles = new Dictionary<string, string>();
             mDirs  = new Dictionary<string, string>();
+
+            //Store file name
+            sFilename = hashfile;
 
             //Create CryptoProvider
             crypto = new MD5CryptoServiceProvider();
@@ -30,13 +32,21 @@ namespace Psycpros.Psycode {
         }
 
         public string GetDirFromHash(byte[] str, string defdir) {
+            //Create an MD5 key, and convert it to a string
             string b = System.Text.Encoding.UTF8.GetString(crypto.ComputeHash(str));
 
+            //See if the key is already in our table, return if it is.
             if(mDirs.ContainsKey(b)) {
-                return mDirs[b];
+                return defdir + "\\" + mDirs[b];
             }
 
+            //If it isn't, create the table entry using console i/o.
             mDirs[b] = defdir;
+            //Console.Write("    New Directory Name: ");
+            //mDirs[b] = Console.ReadLine();
+
+            //Save table and return
+            SaveHashFile(sFilename);
             return mDirs[b];
         }
 
@@ -47,6 +57,9 @@ namespace Psycpros.Psycode {
                 return mFiles[b];
             }
             mFiles[b] = defname;
+            //Console.WriteLine("Editing Hash for File '" + defname + "'");
+            //Console.Write("    New File Name: ");
+            //mFiles[b] = Console.ReadLine();
 
             return mFiles[b];
         }

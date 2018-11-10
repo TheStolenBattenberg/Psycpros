@@ -30,10 +30,8 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.psycprosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tArchiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sonyPlaystationTMDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,9 +42,9 @@
             this.ArchiveList = new System.Windows.Forms.ListView();
             this.ToolBar = new System.Windows.Forms.TabControl();
             this.ModelTool = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.ImageList = new System.Windows.Forms.ListBox();
             this.glControl1 = new OpenTK.GLControl();
-            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.ArchiveTool.SuspendLayout();
@@ -69,17 +67,9 @@
             // 
             // psycprosToolStripMenuItem
             // 
-            this.psycprosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exitToolStripMenuItem});
             this.psycprosToolStripMenuItem.Name = "psycprosToolStripMenuItem";
             this.psycprosToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.psycprosToolStripMenuItem.Text = "Psycpros";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
             // 
             // archiveToolStripMenuItem
             // 
@@ -92,22 +82,15 @@
             // tArchiveToolStripMenuItem
             // 
             this.tArchiveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem,
             this.extractToolStripMenuItem});
             this.tArchiveToolStripMenuItem.Name = "tArchiveToolStripMenuItem";
             this.tArchiveToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.tArchiveToolStripMenuItem.Text = "From Software Archive (*.T)";
             // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-            this.openToolStripMenuItem.Text = "Open";
-            // 
             // extractToolStripMenuItem
             // 
             this.extractToolStripMenuItem.Name = "extractToolStripMenuItem";
-            this.extractToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.extractToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.extractToolStripMenuItem.Text = "Extract";
             this.extractToolStripMenuItem.Click += new System.EventHandler(this.extractToolStripMenuItem_Click);
             // 
@@ -130,7 +113,7 @@
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
@@ -194,6 +177,16 @@
             this.ModelTool.Text = "Model";
             this.ModelTool.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Location = new System.Drawing.Point(3, 360);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(98, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Export...";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // ImageList
             // 
             this.ImageList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -222,16 +215,6 @@
             this.glControl1.Load += new System.EventHandler(this.glControl1_Load);
             this.glControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.glControl1_Paint);
             this.glControl1.Resize += new System.EventHandler(this.glControl1_Resize);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(3, 360);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Export...";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // Psycpros
             // 
@@ -262,12 +245,10 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem psycprosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripMenuItem archiveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tArchiveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem extractToolStripMenuItem;
         private System.Windows.Forms.TabPage ArchiveTool;
         private System.Windows.Forms.TabControl ToolBar;

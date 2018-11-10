@@ -1,0 +1,27 @@
+﻿#version 410
+
+//Data
+//D2V
+layout(location = 0) in vec3 in_Position;
+layout(location = 1) in vec3 in_Normal;
+layout(location = 2) in vec3 in_Texture;
+layout(location = 3) in vec4 in_Colour;
+
+//V2P
+out vec3 v_vNormal;
+out vec3 v_vTexcoord;
+out vec4 v_vColour;
+
+//Uniforms
+uniform mat4 mWorld;
+uniform mat4 mView;
+uniform mat4 mProj;
+
+//Shader Entry Point
+void main(void) {	
+	gl_Position = ((mProj * mView) * mWorld) * vec4(in_Position, 1.0f);
+
+	v_vNormal   = in_Normal;
+	v_vTexcoord = in_Texture;
+	v_vColour   = in_Colour;
+}

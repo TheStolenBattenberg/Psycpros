@@ -1,0 +1,19 @@
+﻿#version 410
+
+//Data
+//V2P
+in vec3 v_vNormal;
+in vec3 v_vTexcoord;
+in vec4 v_vColour;
+
+//P2S
+out vec4 out_Colour;
+
+//Uniforms
+uniform sampler2D sDiffuse;
+
+//Shader Entry Point
+void main(void) {
+	out_Colour = texture(sDiffuse, v_vTexcoord.xy);
+	out_Colour.a = v_vColour.a;
+}

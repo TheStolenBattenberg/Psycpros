@@ -66,6 +66,7 @@
     <Compile Include="Psycode\IMesh.cs" />
     <Compile Include="Psycode\IShader.cs" />
     <Compile Include="Psycode\ITexture.cs" />
+    <Compile Include="Reader\ITIMFormat.cs" />
     <Compile Include="Reader\ITMDFormat.cs" />
     <Compile Include="Window.cs">
       <SubType>Form</SubType>

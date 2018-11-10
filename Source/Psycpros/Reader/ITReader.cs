@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 
 namespace Psycpros.Reader {
@@ -25,7 +21,7 @@ namespace Psycpros.Reader {
          * Constructor
         **/
         public ITReader(string filepath) {
-            pHasher = new Psycode.ICheckSum("filehashtable");
+            pHasher = new Psycode.ICheckSum("Data\\archivehashtable");
 
             sTName = Path.GetFileNameWithoutExtension(filepath);
                 
@@ -170,7 +166,7 @@ namespace Psycpros.Reader {
         }
 
         public void Close() {
-            pHasher.SaveHashFile("filehashtable");
+            pHasher.SaveHashFile("Data\\archivehashtable");
         }
     }
 }

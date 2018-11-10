@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Psycpros.Psycode
-{
-    class ITexture
-    {
+namespace Psycpros.Psycode {
+    class ITexture {
     }
 }

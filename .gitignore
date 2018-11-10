@@ -34,7 +34,7 @@ bld/
 # Build / Bin Directory
 !bin/Debug/
 !bin/Debug/Shader/
-!bin/Debug/filehashtable
+!bin/Debug/Data/
 
 # Visual Studio 2015 cache/options directory
 .vs/

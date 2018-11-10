@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
 using System.IO;
 
 using Psycpros.Reader;
@@ -58,7 +50,7 @@ namespace Psycpros {
             if(pRenderer == null) {
                 return;
             }
-
+     
             //Import the TMD file
             ITMDFormat TMD;
             TMD = new ITMDFormat();
@@ -67,6 +59,7 @@ namespace Psycpros {
 
             //Add Model to renderer
             pRenderer.pModels.Add(TMD.GetModel());
+
 
             //Add Model to list
             ImageList.Items.Add(Path.GetFileNameWithoutExtension(FileName));
